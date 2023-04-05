@@ -10,6 +10,17 @@ function createEmployeeRecord(employeeInfo) {
     employee.timeOutEvents = [];
     return employee;
   }
+  // function create employee records
+  function createEmployeeRecords(arrayOfArrays) {
+    const employeeRecords = [];
+  
+    arrayOfArrays.forEach(array => {
+      const employeeRecord = createEmployeeRecord(array);
+      employeeRecords.push(employeeRecord);
+    });
+  
+    return employeeRecords;
+  }
 
 /*
  We're giving you this function. Take a look at it, you might see some usage
