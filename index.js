@@ -22,6 +22,51 @@ function createEmployeeRecord(employeeInfo) {
     return employeeRecords;
   }
 
+//function that takes in an employee record object and a date stamp.
+function createTimeInEvent(employee, dateStamp) {
+    const [date, hour] = dateStamp.split(" ");
+    employee.timeInEvents.push({
+      type: "TimeIn",
+      hour: parseInt(hour, 10),
+      date: date
+    });
+    return employee;
+  }
+
+  //
+  function createTimeOutEvent(employee, dateStamp) {
+    let [date, hour] = dateStamp.split(' ')
+  
+    employee.timeOutEvents.push({
+      type: "TimeOut",
+      hour: parseInt(hour, 10),
+      date: date,
+    })
+  
+    return employee
+  }
+  function hoursWorkedOnDate(date) {
+    const timeInEvent = this.timeInEvents.find(event => event.date === date);
+    const timeOutEvent = this.timeOutEvents.find(event => event.date === date);
+    return (timeOutEvent.hour - timeInEvent.hour) / 100;
+    }
+    function wagesEarnedOnDate(date) {
+    const hoursWorked = hoursWorkedOnDate.call(this, date);
+    return hoursWorked * this.payPerHour;
+    }
+    function findEmployeeByFirstName(collection, firstNameString) {
+    for (let i = 0; i < collection.length; i++) {
+    if (collection[i].firstName === firstNameString) {
+    return collection[i];
+    }
+    }
+    return null;
+    }
+    let calculatePayroll = function(arrayOfEmployeeRecords){
+    return arrayOfEmployeeRecords.reduce(function(memo, rec){
+    return memo + allWagesFor.call(rec)
+    }, 0)
+  }
 /*
  We're giving you this function. Take a look at it, you might see some usage
  that's new and different. That's because we're avoiding a well-known, but
